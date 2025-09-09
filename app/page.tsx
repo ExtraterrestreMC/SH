@@ -1,103 +1,160 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Trash2, Copy, Plus, Key, Skull, Icon } from "lucide-react"
+
+interface GameKey {
+  id: string
+  game: string
+  key: string
+  platform: string
+  dateAdded: string
+  used: boolean
+}
+
+export default function SilentHillKeysPage() {
+  const [keys, setKeys] = useState<GameKey[]>([
+    {
+      id: "1",
+      game: "Silent Hill",
+      key: "1234-5678-1234-5678",
+      platform: "Steam",
+      dateAdded: "2025-09-11",
+      used: false,
+    },
+  ])
+
+
+
+
+
+  const toggleUsed = (id: string) => {
+    setKeys(keys.map((key) => (key.id === id ? { ...key, used: !key.used } : key)))
+  }
+
+  const copyKey = (keyValue: string) => {
+    navigator.clipboard.writeText(keyValue)
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div id="page-container"
+      className="min-h-screen bg-background text-foreground relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(rgba(42, 42, 42, 0.7), rgba(42, 42, 42, 0.8)), url('https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2024/10/silent-hill-2-remake-4252029.jpg?tf=1200x')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none mist-effect"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20 pointer-events-none fog-drift"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="relative z-10">
+        <div className="border-b border-border bg-gradient-to-r from-background/80 via-muted/60 to-background/80 backdrop-blur-sm">
+          <div className="container mx-auto px-6 py-8">
+            <div className="flex items-center gap-4 mb-2">
+              <div className="w-8 h-8 border-2 border-primary rotate-45 flex items-center justify-center horror-flicker">
+                <img
+                  src="icono.png"
+                  alt="Silent Hill"
+                  width={24}
+                  height={24}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <h1 className="text-4xl font-bold tracking-wider text-foreground static-effect">SILENT HILL 2 REMAKE</h1>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <div className="w-2 h-2 bg-primary animate-pulse horror-flicker"></div>
+              <span>Encuentra a tu Mary</span>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="container mx-auto px-6 py-80">
+         
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 mb-6">
+                <img
+                  src="icono.png"
+                  alt="Silent Hill"
+                  width={24}
+                  height={24}
+                  style={{ objectFit: "cover" }}
+                />
+              <h2 className="text-xl font-bold text-foreground tracking-wide">Esperemos que te guste</h2>
+
+            </div>
+
+            {keys.length === 0 ? (
+              <Card className="bg-card/50 border-border border-dashed">
+                <div className="p-12 text-center">
+                  <Key className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground tracking-wide">No tienes keys</p>
+                </div>
+              </Card>
+            ) : (
+              keys.map((key) => 
+                (
+                  <Card
+                    key={key.id}
+                    className={`bg-card/80 border-border backdrop-blur-sm transition-all duration-200 hover:bg-card/90 static-effect ${key.used ? "opacity-60" : ""}`}
+                  >
+                    <div className="p-6">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <h3 className="text-lg font-bold text-card-foreground tracking-wide">{key.game}</h3>
+
+                            <Badge variant="outline" className="border-border text-muted-foreground">
+                              {key.platform}
+                            </Badge>
+                          </div>
+
+                          <div className="bg-input p-3 rounded border border-border mb-3">
+                            <div className="flex items-center justify-between">
+                              <code className="text-foreground tracking-widest font-mono">
+                                {key.used ? key.key : key.key.replace(/./g, "•")}
+                              </code>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => copyKey(key.key)}
+                                className="text-foreground hover:text-muted-foreground hover:bg-muted/20"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+
+                          <p className="text-muted-foreground text-sm">
+                            Fecha: {new Date(key.dateAdded).toLocaleDateString()}
+                          </p>
+                        </div>
+
+                        <div className="flex gap-2 ml-4">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => toggleUsed(key.id)}
+                            className="border-border text-foreground hover:bg-muted hover:text-foreground"
+                          >
+                            {key.used ? "USADO" : "SIN USAR"}
+                          </Button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))
+            )}
+          </div>
+        </div>
+
+      </div>
     </div>
-  );
+  )
 }
