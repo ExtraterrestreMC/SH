@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, GeistMono } from "next/font/google";
+import { Geist } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -7,10 +8,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = GeistMono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistMono = GeistMono;
 
 export const metadata: Metadata = {
   title: "Silent hill 2 Remake",
