@@ -26,13 +26,15 @@ export default function SilentHillKeysPage() {
       used: false,
     },
   ])
-
-
-
-
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalMessage, setModalMessage] = useState("")
 
   const toggleUsed = (id: string) => {
     setKeys(keys.map((key) => (key.id === id ? { ...key, used: !key.used } : key)))
+  }
+  const popUp = (message: string) => {
+    setModalMessage(message)
+    setModalOpen(true)
   }
 
   const copyKey = (keyValue: string) => {
@@ -49,13 +51,47 @@ export default function SilentHillKeysPage() {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Modal personalizado */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-2">
+          <div className="bg-card/90 border border-border rounded-lg shadow-lg p-4 sm:p-8 max-w-xs sm:max-w-sm w-full relative static-effect">
+            <button
+              className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
+              onClick={() => setModalOpen(false)}
+              aria-label="Cerrar"
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="6" y1="6" x2="18" y2="18" />
+                <line x1="6" y1="18" x2="18" y2="6" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center gap-4">
+              <img
+                src="icono.png"
+                alt="Silent Hill"
+                width={40}
+                height={40}
+                className="horror-flicker"
+                style={{ objectFit: "cover" }}
+              />
+              <p className="text-lg text-center text-foreground font-semibold">{modalMessage}</p>
+              <button
+                className="mt-4 px-4 py-2 rounded bg-primary text-primary-foreground hover:bg-accent transition"
+                onClick={() => setModalOpen(false)}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background/60 pointer-events-none mist-effect"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20 pointer-events-none fog-drift"></div>
 
       <div className="relative z-10">
         <div className="border-b border-border bg-gradient-to-r from-background/80 via-muted/60 to-background/80 backdrop-blur-sm">
-          <div className="container mx-auto px-6 py-8">
-            <div className="flex items-center gap-4 mb-2">
+          <div className="container mx-auto px-2 sm:px-6 py-4 sm:py-8">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mb-2">
               <div className="w-8 h-8 border-2 border-primary rotate-45 flex items-center justify-center horror-flicker">
                 <img
                   src="icono.png"
@@ -65,35 +101,33 @@ export default function SilentHillKeysPage() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <h1 className="text-4xl font-bold tracking-wider text-foreground static-effect">SILENT HILL 2 REMAKE</h1>
+              <h1 className="text-2xl sm:text-4xl font-bold tracking-wider text-foreground static-effect text-center sm:text-left">SILENT HILL 2 REMAKE</h1>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm justify-center sm:justify-start">
               <div className="w-2 h-2 bg-primary animate-pulse horror-flicker"></div>
               <span>Encuentra a tu Mary</span>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-6 py-80">
-         
+        <div className="container mx-auto px-2 sm:px-6 py-12 sm:py-80">
           <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-6">
-                <img
-                  src="icono.png"
-                  alt="Silent Hill"
-                  width={24}
-                  height={24}
-                  style={{ objectFit: "cover" }}
-                />
-              <h2 className="text-xl font-bold text-foreground tracking-wide">Esperemos que te guste</h2>
-
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-6">
+              <img
+                src="icono.png"
+                alt="Silent Hill"
+                width={24}
+                height={24}
+                style={{ objectFit: "cover" }}
+              />
+              <h2 className="text-base sm:text-xl font-bold text-foreground tracking-wide text-center sm:text-left">Esperemos que te guste</h2>
             </div>
 
             {keys.length === 0 ? (
               <Card className="bg-card/50 border-border border-dashed">
-                <div className="p-12 text-center">
-                  <Key className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground tracking-wide">No tienes keys</p>
+                <div className="p-8 sm:p-12 text-center">
+                  <Key className="w-8 h-8 sm:w-12 sm:h-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground tracking-wide text-sm sm:text-base">No tienes keys</p>
                 </div>
               </Card>
             ) : (
@@ -103,20 +137,19 @@ export default function SilentHillKeysPage() {
                     key={key.id}
                     className={`bg-card/80 border-border backdrop-blur-sm transition-all duration-200 hover:bg-card/90 static-effect ${key.used ? "opacity-60" : ""}`}
                   >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <h3 className="text-lg font-bold text-card-foreground tracking-wide">{key.game}</h3>
-
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
+                        <div className="flex-1 w-full">
+                          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-3">
+                            <h3 className="text-base sm:text-lg font-bold text-card-foreground tracking-wide">{key.game}</h3>
                             <Badge variant="outline" className="border-border text-muted-foreground">
                               {key.platform}
                             </Badge>
                           </div>
 
-                          <div className="bg-input p-3 rounded border border-border mb-3">
-                            <div className="flex items-center justify-between">
-                              <code className="text-foreground tracking-widest font-mono">
+                          <div className="bg-input p-2 sm:p-3 rounded border border-border mb-3">
+                            <div className="flex items-center justify-between gap-2">
+                              <code className="text-foreground tracking-widest font-mono text-xs sm:text-base">
                                 {key.used ? key.key : key.key.replace(/./g, "•")}
                               </code>
                               <Button
@@ -130,21 +163,20 @@ export default function SilentHillKeysPage() {
                             </div>
                           </div>
 
-                          <p className="text-muted-foreground text-sm">
+                          <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-left">
                             Fecha: {new Date(key.dateAdded).toLocaleDateString()}
                           </p>
                         </div>
 
-                        <div className="flex gap-2 ml-4">
+                        <div className="flex gap-2 mt-2 sm:mt-0 ml-0 sm:ml-4 w-full sm:w-auto justify-center sm:justify-end">
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => toggleUsed(key.id)}
-                            className="border-border text-foreground hover:bg-muted hover:text-foreground"
+                            onClick={() => popUp("Habla con tu guía para que te ayude por esta ciudad y no perderte con la niebla")}
+                            className="border-border text-foreground hover:bg-muted hover:text-foreground w-full sm:w-auto"
                           >
                             {key.used ? "USADO" : "SIN USAR"}
                           </Button>
-
                         </div>
                       </div>
                     </div>
@@ -153,7 +185,6 @@ export default function SilentHillKeysPage() {
             )}
           </div>
         </div>
-
       </div>
     </div>
   )
