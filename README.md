@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-![imagen.png](./public/silent-hill-2-remake-bg.png)
+![imagen.png](./public/icono.png)
 
 First, run the development server:
 
