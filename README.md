@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-![imagen.png](./public/icono.png)
+![imagen.png](./public/icono.PNG)
 
 First, run the development server:
 
