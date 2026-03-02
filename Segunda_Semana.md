@@ -8,7 +8,7 @@
 **CWE:** 79
 
 - Accedemos a **Photo Wall**, donde vemos la imagen del gato sin cargar.  
-![1.png](./capturas/semana2/1.png)
+![1.png](./capturas/semana3/1.png)
 - Inspeccionamos la página y buscamos la imagen; observamos la ruta donde debería estar.  
 ![2.png](./capturas/semana2/2.png)
 - Si accedemos a la ruta, no hay ninguna imagen que se corresponda con el `src`. 
