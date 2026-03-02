@@ -8,18 +8,18 @@
 **CWE:** 79
 
 - Accedemos a **Photo Wall**, donde vemos la imagen del gato sin cargar.  
-![1.png](./capturas/semana2/1.png)
+![1.png](./capturas/Semana2/1.png)
 - Inspeccionamos la página y buscamos la imagen; observamos la ruta donde debería estar.  
-![2.png](./capturas/semana2/2.png)
+![2.png](./capturas/Semana2/2.png)
 - Si accedemos a la ruta, no hay ninguna imagen que se corresponda con el `src`. 
-![3.png](./capturas/semana2/3.png) 
+![3.png](./capturas/Semana2/3.png) 
 - Copiamos el enlace del `src` para inspeccionarlo. 
-![4.png](./capturas/semana2/4.png) 
+![4.png](./capturas/Semana2/4.png) 
 - Nos damos cuenta de que hay que cambiar las almohadillas `#` por `%23`, ya que HTML no reconoce `#` en la URL. 
-![5.png](./capturas/semana2/5.png)
+![5.png](./capturas/Semana2/5.png)
 - Cargamos la URL correcta y veremos la foto real.  
-![6.png](./capturas/semana2/6.png)
-![7.png](./capturas/semana2/7.png)
+![6.png](./capturas/Semana2/6.png)
+![7.png](./capturas/Semana2/7.png)
 
 ---
 
@@ -28,12 +28,12 @@
 **CWE:**  840/840
 
 - Accedemos al área de registro. 
-![8.png](./capturas/semana2/8.png)
+![8.png](./capturas/Semana2/8.png)
 - Rellenamos los campos.  
-![9.png](./capturas/semana2/9.png)
+![9.png](./capturas/Semana2/9.png)
 - Si después de poner ambas contraseñas cambiamos el campo **Contraseña**, no salta el error de no coincidencia.  
 - Al darle a registrarnos, lo acepta. De esta forma se completa el reto.  
-![10.png](./capturas/semana2/10.png)
+![10.png](./capturas/Semana2/10.png)
 
 ---
 
@@ -42,15 +42,15 @@
 **CWE:**  285
 
 - Accedemos al formulario de **Reseñas**.
-![11.png](./capturas/semana2/11.png)
+![11.png](./capturas/Semana2/11.png)
 - Rellenamos el captcha y el comentario, ya que no deja enviarlo directamente.  
-![12.png](./capturas/semana2/12.png)
+![12.png](./capturas/Semana2/12.png)
 - Vemos que no deja enviarlo, así que inspeccionamos el botón. 
-![13.png](./capturas/semana2/13.png) 
+![13.png](./capturas/Semana2/13.png) 
 - Observamos que el botón tiene el atributo `disabled`.  
 - Quitamos el atributo `disabled` y entonces nos dejará enviarlo.  
 - Así queda completado el reto.  
-![14.png](./capturas/semana2/14.png)
+![14.png](./capturas/Semana2/14.png)
 
 ---
 
@@ -61,10 +61,10 @@
 - Al intentar resolverlo manualmente no se logra (se prueba borrando `required` y modificando el botón).  
 - Se revisa la solución.  
 - Descargamos **Burp Suite**. 
-![15.png](./capturas/semana2/15.png)
-![16.png](./capturas/semana2/16.png)
+![15.png](./capturas/Semana2/15.png)
+![16.png](./capturas/Semana2/16.png)
 - Hacemos un POST con los campos rellenados, los vaciamos manualmente en la petición interceptada y enviamos la solicitud.
-![17.png](./capturas/semana2/17.png)
+![17.png](./capturas/Semana2/17.png)
 
 
 ---
@@ -75,10 +75,10 @@
 
 - Probamos a ejecutar peticiones POST al backend para ver si se pueden introducir datos manualmente.  
 - Abrimos **Postman** y hacemos una petición POST a posibles URLs. 
-![18.png](./capturas/semana2/18.png) 
+![18.png](./capturas/Semana2/18.png) 
 - Descubrimos que se puede hacer a `api/Users`.  
 - Al hacer el POST introduciendo los datos, se completa el reto.  
-![19.png](./capturas/semana2/19.png)
+![19.png](./capturas/Semana2/19.png)
 
 ---
 
@@ -97,14 +97,14 @@
 
 - Nos dirigimos al apartado **Deluxe Membership** de la web.  
 - Con la herramienta **DevTools**, activamos el botón de billetera quitándole dos clases CSS para habilitarlo.  
-![20.png](./capturas/semana2/20.png)
+![20.png](./capturas/Semana2/20.png)
 - Pulsamos continuar y nos dará error.  
 - En la pestaña **Network** de DevTools buscamos la petición POST.  
 - Editamos la petición en **Burp Suite**, dejando el método de pago vacío, y la reenviamos.  
-![21.png](./capturas/semana2/21.png)
-![22.png](./capturas/semana2/22.png)
+![21.png](./capturas/Semana2/21.png)
+![22.png](./capturas/Semana2/22.png)
 - Una vez realizado esto, el reto se completa.  
-![23.png](./capturas/semana2/23.png)
+![23.png](./capturas/Semana2/23.png)
 
 ---
 
@@ -115,16 +115,16 @@
 - Añadimos un producto al carrito.  
 - En **DevTools → Network**, localizamos el endpoint para modificar el carrito (incluida la cantidad).  
 - Copiamos el endpoint de un método PUT y lo usamos en **Postman**.  
-![24.png](./capturas/semana2/24.png)
+![24.png](./capturas/Semana2/24.png)
 - También obtenemos el token **Bearer** desde Network y lo añadimos en la sección Auth de Postman.  
-![25.png](./capturas/semana2/25.png)
+![25.png](./capturas/Semana2/25.png)
 - Probamos una petición añadiendo la ID de un producto (por ejemplo, la 10).  
 - Nos devuelve un JSON con los datos y vemos el parámetro `quantity`. 
-![26.png](./capturas/semana2/26.png) 
+![26.png](./capturas/Semana2/26.png) 
 - Hacemos un PUT actualizando `quantity` a un valor negativo, por ejemplo `-100`.  
-![27.png](./capturas/semana2/27.png)
+![27.png](./capturas/Semana2/27.png)
 - Al completar el pedido, aparece que nos deben dinero y se completa el reto.  
-![28.png](./capturas/semana2/28.png)
+![28.png](./capturas/Semana2/28.png)
 
 ---
 
@@ -135,10 +135,10 @@
 - La página solo permite archivos de 100 KiB o menos.  
 - Usamos **Postman** para hacer un POST al endpoint `/file-upload`.  
 - Seleccionamos un PDF de más de 100 KiB.  
-![29.png](./capturas/semana2/29.png)
+![29.png](./capturas/Semana2/29.png)
 - Se envía la petición, devuelve un `204` y se completa el reto.  
-![30.png](./capturas/semana2/30.png)
-![31.png](./capturas/semana2/31.png)
+![30.png](./capturas/Semana2/30.png)
+![31.png](./capturas/Semana2/31.png)
 
 ---
 
@@ -148,9 +148,9 @@
 
 - Similar al reto anterior.  
 - Hacemos un POST desde **Postman** al endpoint `/file-upload`. 
-![32.png](./capturas/semana2/32.png) 
+![32.png](./capturas/Semana2/32.png) 
 - Subimos, por ejemplo, un documento Word.  
 - Devuelve un `204` y el reto queda resuelto.  
-![33.png](./capturas/semana2/33.png)
+![33.png](./capturas/Semana2/33.png)
 
 ---
